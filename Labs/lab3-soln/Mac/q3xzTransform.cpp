@@ -73,11 +73,15 @@ void display(void)
     glClear(GL_COLOR_BUFFER_BIT);
     float angle = 0.001 * glutGet(GLUT_ELAPSED_TIME);
     
-    mat3 mTransform = mat3(cos(angle), 0.0, -sin(angle),
+    mat3 mTransform = mat3(cos(angle), 0.0, sin(angle),
                            0.0,        1.0,         0.0,
-                           sin(angle), 0.0, cos(angle));
+                           -sin(angle), 0.0, cos(angle));
     
-    glUniformMatrix3fv(transformID, 1, GL_FALSE, mTransform);
+    glUniformMatrix3fv(transformID, 1, GL_TRUE, mTransform); /* the third paramter specifies whether to transpose the matrix as the values are loaded into the uniform variable. 
+If transpose is GL_FALSE, each matrix is assumed to be supplied in column major order. If transpose is GL_TRUE, each matrix is assumed to be supplied in row major order. 
+We set it GL_TRUE to ensure correct matrix-vector mulitplication in the shader., i.e., mTransform[0] corresponds to the first row [ cos(angle), 0.0, sin(angle)]. 
+If we were to set it to GL_FALSE then the matrix-vector multipliation in the shader would equate to mTransform^T * vPosition instead of mTransform * vPosition     */
+    
     glDrawArrays(GL_POINTS, 0, NumPoints);
     glutSwapBuffers();
 }
