@@ -77,7 +77,12 @@ void display(void)
                            0.0, cos(angle), -sin(angle),
                            0.0, sin(angle),  cos(angle));
     
-    glUniformMatrix3fv(transformID, 1, GL_FALSE, mTransform);
+    glUniformMatrix3fv(transformID, 1, GL_TRUE, mTransform); 
+    /* the third parameter in glUniformMatrix3fv() specifies whether to transpose the matrix as the values are loaded into the uniform variable. 
+If transpose is GL_FALSE, each matrix is assumed to be supplied in column major order. If transpose is GL_TRUE, each matrix is assumed to be supplied in row major order. 
+We set it GL_TRUE to ensure correct matrix-vector mulitplication in the shader., i.e., mTransform[0] corresponds to the first row [ 1.0, 0.0, 0.0]. 
+If we were to set it to GL_FALSE then the matrix-vector multipliation in the shader would equate to mTransform^T * vPosition instead of mTransform * vPosition   */
+    
     glDrawArrays(GL_POINTS, 0, NumVertices);
     glutSwapBuffers();
 }
