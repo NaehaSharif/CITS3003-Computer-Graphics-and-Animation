@@ -81,7 +81,7 @@ void display(void)
     /* the third paramter specifies whether to transpose the matrix as the values are loaded into the uniform variable. 
 If transpose is GL_FALSE, each matrix is assumed to be supplied in column major order. If transpose is GL_TRUE, each matrix is assumed to be supplied in row major order. 
 We set it GL_TRUE to ensure correct matrix-vector mulitplication in the shader., i.e., mTransform[0] corresponds to the first row [ cos(angle), 0.0, sin(angle)]. 
-If we were to set it to GL_FALSE then the matrix-vector multipliation in the shader would equate to (transform^T) * vPosition instead of transform * vPosition */
+If we were to set it to GL_FALSE then the matrix-vector multipliation in the shader would equate to mTransform^T * vPosition instead of mTransform * vPosition */
     
     glDrawArrays(GL_POINTS, 0, NumPoints);
     glutSwapBuffers();
