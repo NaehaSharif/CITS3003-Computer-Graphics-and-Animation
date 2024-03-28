@@ -104,8 +104,7 @@ void display( void )
  
     float angle = 0.001 * glutGet(GLUT_ELAPSED_TIME);
 
-    // NOTE: the mat3 constructor that takes vec3's makes each vec3
-    // a row, as expected, unlike the constructor that takes 9 floats. 
+    // NOTE: the mat3 constructor that takes vec3's makes each vec3 a row
 
     mat3 rotateYmultipliers =  mat3( vec3(cos(angle),  0.0, sin(angle)),
                                      vec3(0.0,         1.0,        0.0),
