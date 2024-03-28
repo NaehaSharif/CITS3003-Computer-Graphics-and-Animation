@@ -121,11 +121,10 @@ void display( void )
                         vec3(0.0,  0.0, 1.0) );
                        
     mat3 combinedMultipliers = rotateXmultipliers * rotateYmultipliers * shrinkX;
-  
-    // NOTE: we always need GL_TRUE when passing matrices to GLSL to enable
-    // transpose conversion - our C++ matrices are arrays of rows, while GLSL
-    // has arrays of columns.
+    
     glUniformMatrix3fv( xyzMultipliers, 1, GL_TRUE, combinedMultipliers );
+      // NOTE: we always need GL_TRUE when passing matrices to GLSL 
+    
     glDrawArrays( GL_TRIANGLES, 0, NumVertices );
     
     glutSwapBuffers();
