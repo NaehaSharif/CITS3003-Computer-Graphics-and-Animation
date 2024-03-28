@@ -105,7 +105,7 @@ void display( void )
     
 
     // NOTE: the mat3 constructor that takes vec3's makes each vec3
-    // a row, as expected, unlike the constructor that takes 9 floats. 
+    // a row, as expected
 
     mat3 rotateYmultipliers =  mat3( vec3(cos(angle),  0.0, sin(angle)),
                                      vec3(0.0,         1.0,        0.0),
@@ -122,9 +122,8 @@ void display( void )
                        
     mat3 combinedMultipliers = shrinkX * rotateXmultipliers * rotateYmultipliers;
      
-    // NOTE: we always need GL_TRUE when passing matrices to GLSL to enable
-    // transpose conversion - our C++ matrices are arrays of rows, while GLSL
-    // has arrays of columns.
+    // NOTE: we always need GL_TRUE when passing matrices to GLSL
+    
     glUniformMatrix3fv( xyzMultipliers, 1, GL_TRUE, combinedMultipliers );
     glDrawArrays( GL_TRIANGLES, 0, NumVertices );
     
