@@ -117,7 +117,8 @@ void display( void )
     /*  the third parameter in glUniformMatrix3fv() specifies whether to transpose the matrix as the values are loaded into the uniform variable. 
 If transpose is GL_FALSE, each matrix is assumed to be supplied in column major order. If transpose is GL_TRUE, each matrix is assumed to be supplied in row major order. 
 We set it GL_TRUE to ensure correct matrix-vector mulitplication in the shader i.e., combinedMultipliers[0] corresponds to the first row of the matrix.
-If we were to set it to GL_FALSE then the matrix-vector multipliation in the shader would equate to combinedMultipliers^T * vPosition instead of combinedMultipliers* vPosition   */
+If we were to set it to GL_FALSE then the matrix-vector multipliation in the shader would equate to combinedMultipliers^T * vPosition instead of combinedMultipliers* vPosition 
+Also, our C++ matrices are arrays of rows, while GLSL has arrays of columns.*/
     
     glDrawArrays( GL_TRIANGLES, 0, NumVertices );
     
